@@ -1,32 +1,31 @@
-package ir.ac.kntu;
+package ir.ac.kntu.Organizer;
 
-import javafx.animation.AnimationTimer;
+import ir.ac.kntu.Object.Characters.Heroes.Hero;
+import ir.ac.kntu.Object.HQ;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.*;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Main extends Application {
-    // this class is just a sample
-    // clear the start menu and start writing your project!
+    static Group root = new Group();
+    static Scene scene = new Scene(root, 900, 600, false, SceneAntialiasing.BALANCED);
+
+
     @Override
     public void start(Stage stage) throws Exception {
-        Group root = new Group();
-        Scene scene = new Scene(root, 800, 600, false, SceneAntialiasing.BALANCED);
+        scene.setFill(Color.rgb(129,50,80));
         stage.setScene(scene);
+        Hero.setHeroes();
+        HQ.setHQ();
+        Menu menu = new Menu();
+        menu.addingButtons();
         Camera camera = new ParallelCamera();
         scene.setCamera(camera);
         stage.setTitle("Once Upon a Time in Kamurocho!");
-        Circle circle = new Circle(100, Color.rgb(128, 50, 110, 0.9));
+        stage.setResizable(false);
+
+        /*Circle circle = new Circle(100, Color.rgb(128, 50, 110, 0.9));
         Rectangle rectangle = new Rectangle(40, 40, Color.web("0x01abff"));
         circle.setCenterX(200);
         circle.setCenterY(200);
@@ -65,7 +64,15 @@ public class Main extends Application {
         timer.schedule(task, 1000, 500);
         root.getChildren().addAll(circle, rectangle, progressBar);
         stage.setResizable(false);
-        scene.setFill(Color.DARKGREEN);
+        scene.setFill(Color.DARKGREEN);*/
         stage.show();
+    }
+
+    public static Group getRoot() {
+        return root;
+    }
+
+    public static Scene getScene() {
+        return scene;
     }
 }
