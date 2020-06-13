@@ -6,14 +6,14 @@ import ir.ac.kntu.Object.Objects;
 import javafx.scene.shape.Shape;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 public abstract class Characters implements Objects {
     protected int health;
     protected int attack;
     protected int attackRange;
-    protected static final int attackRangeCons = 0;
+    protected static final int attackRangeCons = 5;
     protected Shape representative;
-
 
 
 
@@ -26,12 +26,7 @@ public abstract class Characters implements Objects {
     public Characters(){}
 
 
-    @Override
-    public void destruction() {
-        if(this.getHealth() == 0){
 
-        }
-    }
 
     public abstract void movement(double destinationX,double destinationY);
 

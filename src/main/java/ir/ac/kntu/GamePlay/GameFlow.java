@@ -1,9 +1,13 @@
 package ir.ac.kntu.GamePlay;
 
+import ir.ac.kntu.Object.Characters.Enemies.Enemy;
+import ir.ac.kntu.Object.Characters.Heroes.DaigoDojima;
+import ir.ac.kntu.Object.Characters.Heroes.FutoshiShimano;
 import ir.ac.kntu.Object.Characters.Heroes.Hero;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.MouseEvent;
 
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicReference;
@@ -11,7 +15,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import static ir.ac.kntu.Organizer.Main.getScene;
 
 public class GameFlow {
-    private static final int speedCons = 1;
+    private static final double speedCons = 0.2;
 
 
     public static void heroMovement() {
@@ -60,16 +64,21 @@ public class GameFlow {
     }
 
 
-//    public void heroAttack(){
-//        if()
-//    }
+    public static void heroAttack(Enemy enemy){
+        for(Hero i : Hero.getHeroes()){
+            i.attackHero(enemy);
+        }
+    }
 
-    public static void go(AtomicReference tempX,AtomicReference tempY){
-
+    public static void enemyAttack(Hero hero){
+        for(Enemy i: GameSetup.getEnemyGroup()){
+            i.attackEnemy(hero);
+        }
     }
 
 
-    public static int getSpeedCons() {
+
+    public static double getSpeedCons() {
         return speedCons;
     }
 

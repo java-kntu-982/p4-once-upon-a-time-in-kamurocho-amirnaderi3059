@@ -19,6 +19,8 @@ public class GameSetup {
     private static Hero selected;
     private static int counter = 0;
     private static LinkedList<HQ> presentHQ = new LinkedList<>();
+    private static LinkedList<Enemy> enemyGroup = new LinkedList<>();
+
 
 
     public static void setBasics() throws CloneNotSupportedException {
@@ -91,11 +93,20 @@ public class GameSetup {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                for(RedSoldier i : RedSoldier.getRedSoldiers()){
+                for(Enemy i : enemyGroup){
                     i.march();
+                    GameFlow.heroAttack(i);
+                    System.out.println(i.getHealth());
                 }
-                for(GraySoldier i : GraySoldier.getGraySoldiers()){
-                    i.march();
+                for(Enemy i : Enemy.getDestructedEnemies()){
+                    enemyGroup.remove(i);
+                }
+                for(Hero i: Hero.getHeroes()){
+                    GameFlow.enemyAttack(i);
+                    //System.out.println(i.getHealth());
+                }
+                for(Hero i : Hero.getDestructedHeroes()){
+                    enemyGroup.remove(i);
                 }
                 try {
                     pointer();
@@ -125,6 +136,7 @@ public class GameSetup {
                 initialY = inY;
                 initialX += 20;
             }
+            enemyGroup.add(i);
         }
     }
 
@@ -142,6 +154,7 @@ public class GameSetup {
                 initialY = inY;
                 initialX += 20;
             }
+            enemyGroup.add(i);
         }
     }
 
@@ -162,17 +175,6 @@ public class GameSetup {
         }
     }
 
-    public void enemyMarch(Enemy enemy){
-        if(distanceCalculator(enemy.getRepresentative(),presentHQ.get(0).getFacility()) <
-                distanceCalculator(enemy.getRepresentative(),presentHQ.get(1).getFacility())){
-           // enemy.m
-        }
-    }
-
-    public double distanceCalculator(Shape shape1,Shape shape2){
-        return Math.sqrt(Math.pow(shape1.getTranslateX()-shape2.getTranslateX(),2)+Math.pow(shape1.getTranslateY()-shape2.getTranslateY(),2));
-    }
-
 
     public static Hero getSelected() {
         return selected;
@@ -180,5 +182,9 @@ public class GameSetup {
 
     public static LinkedList<HQ> getPresentHQ() {
         return presentHQ;
+    }
+
+    public static LinkedList<Enemy> getEnemyGroup() {
+        return enemyGroup;
     }
 }

@@ -1,6 +1,7 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import ir.ac.kntu.GamePlay.GameFlow;
+import ir.ac.kntu.GamePlay.GameSetup;
 import ir.ac.kntu.Object.Characters.Characters;
 import ir.ac.kntu.Object.Characters.Enemies.Enemy;
 import ir.ac.kntu.Object.HQ;
@@ -24,6 +25,8 @@ public abstract class Hero extends Characters {
     protected Text training = new Text();
     protected Rectangle representative = new Rectangle();
     protected static LinkedList<Hero> heroes = new LinkedList<>();
+    protected static LinkedList<Hero> destructedHeroes = new LinkedList<>();
+
 
     public Hero(int health, int attack, int attackRange, int fieldOfView)  {
         super(health, attack, attackRange);
@@ -81,13 +84,6 @@ public abstract class Hero extends Characters {
     }
 
 
-    /*public void heroAttack(){
-        if(distance())
-    }*/
-
-    /*public double distance(Enemy enemy){
-        return Math.sqrt(Math.pow(hq.getFacility().getCenterX()-getRepresentative().getX(),2)+Math.pow(hq.getFacility().getCenterY()-getRepresentative().getY(),2));
-    }*/
 
     public void setText(){
         getName().setText( getClass().getSimpleName() + "  H:" + getHealth()
@@ -102,25 +98,41 @@ public abstract class Hero extends Characters {
     }
 
     public void attackHero(Enemy enemy){
-        if(distance(enemy)<fieldOfView){
+        if(distance(enemy)>attackRange && distance(enemy)<fieldOfView){
             movement(enemy.getRepresentative().getCenterX(),enemy.getRepresentative().getCenterY());
-            if(distance(enemy)<attackRange){
-
-            }
         }
+        else if(distance(enemy)<attackRange){
+            enemy.setUnderAttack(true);
+            enemy.setHealth(enemy.getHealth()-(int)(getAttack()*0.05));
+        }
+        enemy.getAttackingHero().add(this);
+        enemy.destruction();
     }
 
-    @Override
     public void movement(double destinationX,double destinationY){
-        double theta = Math.atan(Math.abs(destinationY - representative.getTranslateX() / destinationX - representative.getTranslateY()));
-        representative.setTranslateX(representative.getTranslateX() + GameFlow.getSpeedCons() * 2 * Math.sin(theta));
-        representative.setTranslateY(representative.getTranslateY() + GameFlow.getSpeedCons() * 2 * Math.cos(theta));
+        double theta = Math.atan((destinationY - representative.getTranslateX()) / (destinationX - representative.getTranslateY()));
+        if(representative.getY()>destinationY) {
+            representative.setX(representative.getX() - GameFlow.getSpeedCons() * 2 * Math.sin(theta));
+            representative.setY(representative.getY() - GameFlow.getSpeedCons() * 2 * Math.cos(theta));
+        }
+        else{
+            representative.setX(representative.getX() + GameFlow.getSpeedCons() * 2 * Math.sin(theta));
+            representative.setY(representative.getY() + GameFlow.getSpeedCons() * 2 * Math.cos(theta));
+        }
     }
 
 
     public double distance(Enemy enemy){
         return Math.sqrt(Math.pow(getRepresentative().getX()-enemy.getRepresentative().getCenterX(),2)+
                 Math.pow(getRepresentative().getY()-enemy.getRepresentative().getCenterY(),2));
+    }
+
+    @Override
+    public void destruction() {
+        if(this.getHealth() <= 0){
+            Hero.getHeroes().get(Hero.getHeroes().indexOf(this)).getRepresentative().setVisible(false);
+            destructedHeroes.add(this);
+        }
     }
 
     public void setLvl(int lvl) {
@@ -181,5 +193,13 @@ public abstract class Hero extends Characters {
 
     public Button getButton1() {
         return button1;
+    }
+
+    public static LinkedList<Hero> getDestructedHeroes() {
+        return destructedHeroes;
+    }
+
+    public void setDestructedHeroes(LinkedList<Hero> destructedHeroes) {
+        this.destructedHeroes = destructedHeroes;
     }
 }

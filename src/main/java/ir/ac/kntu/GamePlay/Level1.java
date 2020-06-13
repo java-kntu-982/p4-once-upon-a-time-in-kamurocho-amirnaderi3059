@@ -1,5 +1,6 @@
 package ir.ac.kntu.GamePlay;
 
+import ir.ac.kntu.Object.Characters.Enemies.Enemy;
 import ir.ac.kntu.Object.Characters.Heroes.Hero;
 import ir.ac.kntu.Object.HQ;
 
@@ -7,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Level1 {
-
+    LinkedList<Enemy> enemyGroup = new LinkedList<>();
 
     public static void setTheScene(){
         for(Hero hero : Hero.getHeroes()){
