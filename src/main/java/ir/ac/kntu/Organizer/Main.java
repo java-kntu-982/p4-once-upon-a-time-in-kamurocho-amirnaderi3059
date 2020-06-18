@@ -2,6 +2,7 @@ package ir.ac.kntu.Organizer;
 
 import ir.ac.kntu.Object.Characters.Heroes.Hero;
 import ir.ac.kntu.Object.HQ;
+import ir.ac.kntu.Object.Upgrade;
 import javafx.application.Application;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
@@ -13,9 +14,10 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         scene.setFill(Color.rgb(129,50,80));
         stage.setScene(scene);
+        Upgrade.moneySetting();
         Hero.setHeroes();
         HQ.setHQ();
         Menu menu = new Menu();

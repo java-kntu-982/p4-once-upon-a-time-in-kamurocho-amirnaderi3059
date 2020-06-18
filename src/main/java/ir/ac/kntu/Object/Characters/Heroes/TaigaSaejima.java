@@ -1,16 +1,11 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
-import java.time.temporal.TemporalAccessor;
 
 public class TaigaSaejima extends Hero{
     private static TaigaSaejima single_instance = null;
 
-    private TaigaSaejima(int health, int attack, int attackRange, int fieldOfView) {
-        super(health, attack, attackRange, fieldOfView);
-    }
 
     private TaigaSaejima(){}
 

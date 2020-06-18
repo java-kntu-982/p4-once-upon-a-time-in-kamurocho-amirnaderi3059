@@ -1,16 +1,11 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
-import javax.swing.plaf.FontUIResource;
 
 public class FutoshiShimano extends Hero {
     private static FutoshiShimano single_instance = null;
 
-    private FutoshiShimano(int health, int attack, int attackRange, int fieldOfView) {
-        super(health, attack, attackRange, fieldOfView);
-    }
 
     private FutoshiShimano(){}
 

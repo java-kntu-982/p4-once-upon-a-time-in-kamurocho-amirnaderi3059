@@ -1,14 +1,11 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public class ShintaroKazama extends Hero {
     private static ShintaroKazama single_instance = null;
 
-    private ShintaroKazama(int health, int attack, int attackRange, int fieldOfView) {
-        super(health, attack, attackRange, fieldOfView);
-    }
+
 
     private ShintaroKazama(){}
 

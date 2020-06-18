@@ -1,14 +1,11 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
+
 
 public class GoroMajima extends Hero {
     private static GoroMajima single_instance = null;
 
-    private GoroMajima(int health, int attack, int attackRange, int fieldOfView) {
-        super(health, attack, attackRange, fieldOfView);
-    }
 
     private GoroMajima(){}
 

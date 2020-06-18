@@ -1,14 +1,10 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public class KaoruSayama extends Hero{
     private static KaoruSayama single_instance = null;
 
-    private KaoruSayama(int health, int attack, int attackRange, int fieldOfView) {
-        super(health, attack, attackRange, fieldOfView);
-    }
 
     private KaoruSayama(){}
 

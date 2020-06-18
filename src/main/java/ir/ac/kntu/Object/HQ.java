@@ -1,5 +1,6 @@
 package ir.ac.kntu.Object;
 
+import ir.ac.kntu.GamePlay.GameSetup;
 import ir.ac.kntu.Organizer.Main;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
@@ -40,9 +41,6 @@ public class HQ implements Objects {
         this.lvl = lvl;
     }
 
-    public void setCurrentState(Text currentState) {
-        this.currentState = currentState;
-    }
 
     public static LinkedList<HQ> getHQList() {
         return HQList;
@@ -58,10 +56,6 @@ public class HQ implements Objects {
 
     public Text getCurrentState() {
         return currentState;
-    }
-
-    public void setButton(Button button) {
-        this.button = button;
     }
 
     public String getName() {
@@ -100,7 +94,10 @@ public class HQ implements Objects {
 
     @Override
     public void destruction() {
-
+        if(durability<=0){
+            GameSetup.getPresentHQ().get(GameSetup.getPresentHQ().indexOf(this)).getFacility().setVisible(false);
+            GameSetup.getPresentHQ().remove(this);
+        }
     }
 
     public void setText(){

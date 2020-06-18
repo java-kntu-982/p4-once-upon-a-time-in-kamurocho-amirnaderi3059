@@ -1,19 +1,16 @@
 package ir.ac.kntu.Object.Characters;
 
-import ir.ac.kntu.GamePlay.GameFlow;
-import ir.ac.kntu.Object.HQ;
-import ir.ac.kntu.Object.Objects;
-import javafx.scene.shape.Shape;
 
-import java.awt.*;
-import java.util.LinkedList;
+import ir.ac.kntu.Object.Objects;
+
+
 
 public abstract class Characters implements Objects {
     protected int health;
     protected int attack;
     protected int attackRange;
-    protected static final int attackRangeCons = 5;
-    protected Shape representative;
+    protected static final int attackRangeCons = 25;
+
 
 
 
@@ -47,11 +44,12 @@ public abstract class Characters implements Objects {
         this.attack = attack;
     }
 
-    public int getAttackRange() {
-        return attackRange;
-    }
 
     public void setAttackRange(int attackRange) {
         this.attackRange = attackRange;
+    }
+
+    public static int getAttackRangeCons() {
+        return attackRangeCons;
     }
 }

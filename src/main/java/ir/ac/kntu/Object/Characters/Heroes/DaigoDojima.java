@@ -1,7 +1,7 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
 
 
 
@@ -9,9 +9,6 @@ public class DaigoDojima extends Hero {
 
     private static DaigoDojima single_instance = null;
 
-    private DaigoDojima(int health, int attack, int attackRange, int fieldOfView) {
-        super(health, attack, attackRange, fieldOfView);
-    }
 
     private DaigoDojima(){}
 

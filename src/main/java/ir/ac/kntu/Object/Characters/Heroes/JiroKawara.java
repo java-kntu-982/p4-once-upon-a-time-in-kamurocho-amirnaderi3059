@@ -1,14 +1,10 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public class JiroKawara extends Hero {
     private static JiroKawara single_instance = null;
 
-    private JiroKawara(int health, int attack, int attackRange, int fieldOfView) {
-        super(health, attack, attackRange, fieldOfView);
-    }
 
     private JiroKawara(){}
 

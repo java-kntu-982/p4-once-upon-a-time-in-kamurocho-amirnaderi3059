@@ -1,15 +1,12 @@
 package ir.ac.kntu.Object.Characters.Enemies;
 
-import ir.ac.kntu.Object.Characters.Characters;
-import ir.ac.kntu.Object.Objects;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
-import javax.swing.*;
+import javafx.scene.paint.Color;
 import java.util.LinkedList;
 
 public class GraySoldier extends Enemy{
     static LinkedList<GraySoldier> graySoldiers = new LinkedList<>();
+    static LinkedList<GraySoldier> graySoldiers1 = new LinkedList<>();
 
     public GraySoldier(int health, int attack, int attackRange) {
         super(health, attack, attackRange);
@@ -26,4 +23,9 @@ public class GraySoldier extends Enemy{
     public static LinkedList<GraySoldier> getGraySoldiers() {
         return graySoldiers;
     }
+
+    public static LinkedList<GraySoldier> getGraySoldiers1() {
+        return graySoldiers1;
+    }
 }
+

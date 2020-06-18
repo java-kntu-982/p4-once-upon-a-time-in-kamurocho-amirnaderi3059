@@ -1,26 +1,15 @@
 package ir.ac.kntu.GamePlay;
 
 import ir.ac.kntu.Object.Characters.Enemies.Enemy;
-import ir.ac.kntu.Object.Characters.Heroes.DaigoDojima;
-import ir.ac.kntu.Object.Characters.Heroes.FutoshiShimano;
 import ir.ac.kntu.Object.Characters.Heroes.Hero;
-import javafx.animation.AnimationTimer;
 import javafx.scene.input.MouseEvent;
-
-import java.util.LinkedList;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicReference;
-
 import static ir.ac.kntu.Organizer.Main.getScene;
 
 public class GameFlow {
-    private static final double speedCons = 0.2;
+    private static final double speedCons = 0.5;
 
 
     public static void heroMovement() {
-        System.out.println(Hero.getHeroes().size());
-
         getScene().addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
 
             GameSetup.getSelected().getRepresentative().setX(event.getX());

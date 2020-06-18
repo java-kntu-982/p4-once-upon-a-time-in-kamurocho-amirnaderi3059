@@ -1,14 +1,10 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public class RyujiGoda extends Hero{
     private static RyujiGoda single_instance = null;
 
-    private RyujiGoda(int health, int attack, int attackRange, int fieldOfView){
-        super(health, attack, attackRange, fieldOfView);
-    }
 
     private RyujiGoda() {
     }

@@ -1,13 +1,13 @@
 package ir.ac.kntu.Object.Characters.Enemies;
 
-import ir.ac.kntu.Object.Characters.Characters;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
+import javafx.scene.paint.Color;
 import java.util.LinkedList;
 
 public class YellowSoldier extends Enemy implements Cloneable{
     static LinkedList<YellowSoldier> yellowSoldiers = new LinkedList<>();
+    static LinkedList<YellowSoldier> yellowSoldiers1 = new LinkedList<>();
+
 
     public YellowSoldier(int health, int attack, int attackRange) {
         super(health, attack, attackRange);
@@ -25,5 +25,9 @@ public class YellowSoldier extends Enemy implements Cloneable{
 
     public static LinkedList<YellowSoldier> getYellowSoldiers() {
         return yellowSoldiers;
+    }
+
+    public static LinkedList<YellowSoldier> getYellowSoldiers1() {
+        return yellowSoldiers1;
     }
 }

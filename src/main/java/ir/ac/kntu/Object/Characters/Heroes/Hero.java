@@ -1,10 +1,8 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import ir.ac.kntu.GamePlay.GameFlow;
-import ir.ac.kntu.GamePlay.GameSetup;
 import ir.ac.kntu.Object.Characters.Characters;
 import ir.ac.kntu.Object.Characters.Enemies.Enemy;
-import ir.ac.kntu.Object.HQ;
 import ir.ac.kntu.Object.Upgrade;
 import ir.ac.kntu.Organizer.Main;
 import javafx.scene.control.Button;
@@ -16,7 +14,7 @@ import java.util.LinkedList;
 
 public abstract class Hero extends Characters {
     protected int fieldOfView;
-    protected static final int fieldOfViewCons = 10;
+    protected static final int fieldOfViewCons = 50;
     protected  int lvl;
     protected Button button = new Button(getClass().getSimpleName());
     protected Button button1 = new Button(getClass().getSimpleName());
@@ -103,7 +101,7 @@ public abstract class Hero extends Characters {
         }
         else if(distance(enemy)<attackRange){
             enemy.setUnderAttack(true);
-            enemy.setHealth(enemy.getHealth()-(int)(getAttack()*0.05));
+            enemy.setHealth(enemy.getHealth()-(int)(getAttack()*0.005));
         }
         enemy.getAttackingHero().add(this);
         enemy.destruction();
@@ -112,12 +110,12 @@ public abstract class Hero extends Characters {
     public void movement(double destinationX,double destinationY){
         double theta = Math.atan((destinationY - representative.getTranslateX()) / (destinationX - representative.getTranslateY()));
         if(representative.getY()>destinationY) {
-            representative.setX(representative.getX() - GameFlow.getSpeedCons() * 2 * Math.sin(theta));
-            representative.setY(representative.getY() - GameFlow.getSpeedCons() * 2 * Math.cos(theta));
+            representative.setX(representative.getX() + (GameFlow.getSpeedCons() * 2 * Math.sin(theta)));
+            representative.setY(representative.getY() - (GameFlow.getSpeedCons() * 2 * Math.cos(theta)));
         }
         else{
-            representative.setX(representative.getX() + GameFlow.getSpeedCons() * 2 * Math.sin(theta));
-            representative.setY(representative.getY() + GameFlow.getSpeedCons() * 2 * Math.cos(theta));
+            representative.setX(representative.getX() - (GameFlow.getSpeedCons() * 2 * Math.sin(theta)));
+            representative.setY(representative.getY() + (GameFlow.getSpeedCons() * 2 * Math.cos(theta)));
         }
     }
 
@@ -147,9 +145,6 @@ public abstract class Hero extends Characters {
         return button;
     }
 
-    public void setButton(Button button) {
-        this.button = button;
-    }
 
     public void setFieldOfView(int fieldOfView) {
         this.fieldOfView = fieldOfView;
@@ -175,16 +170,8 @@ public abstract class Hero extends Characters {
         return name;
     }
 
-    public void setName(Text name) {
-        this.name = name;
-    }
-
     public Text getTraining() {
         return training;
-    }
-
-    public void setTraining(Text training) {
-        this.training = training;
     }
 
     public Rectangle getRepresentative() {
@@ -199,7 +186,4 @@ public abstract class Hero extends Characters {
         return destructedHeroes;
     }
 
-    public void setDestructedHeroes(LinkedList<Hero> destructedHeroes) {
-        this.destructedHeroes = destructedHeroes;
-    }
 }

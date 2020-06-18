@@ -1,16 +1,15 @@
 package ir.ac.kntu.Organizer;
 
 import ir.ac.kntu.GamePlay.GameSetup;
-import ir.ac.kntu.GamePlay.Level1;
+import ir.ac.kntu.GamePlay.Levels;
 import ir.ac.kntu.Object.Characters.Enemies.Enemy;
 import ir.ac.kntu.Object.Characters.Heroes.*;
 import ir.ac.kntu.Object.HQ;
-import javafx.event.Event;
+import ir.ac.kntu.Object.Upgrade;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
-import static ir.ac.kntu.Organizer.Menu.exitingMainMenu;
-import static ir.ac.kntu.Organizer.Menu.mission1;
+import static ir.ac.kntu.Organizer.Menu.*;
 
 public class EventHandling {
     static EventHandler<MouseEvent> trainMouse;
@@ -45,11 +44,7 @@ public class EventHandling {
             handleFortifyHQ();
         });
 
-        Menu.back.setOnMouseClicked(mouseEvent -> {
-            Menu.enteringMainMenu();
-
-
-        });
+        Menu.back.setOnMouseClicked(mouseEvent -> Menu.enteringMainMenu());
     }
 
     private static void handleFortifyHQ() {
@@ -93,14 +88,20 @@ public class EventHandling {
 
     private static void handleMission() {
         mission1.setOnMouseClicked(mouseEvent -> {
-            try {
-                Enemy.setEnemies();
-                GameSetup.setBasics();
-                Level1.setTheScene();
-                GameSetup.movement();
-            } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
-            }
+
+            Enemy.setEnemies();
+            GameSetup.setBasics();
+            Levels.setTheScene1();
+            GameSetup.enemyStrike();
+            GameSetup.heroStrike();
+        });
+        mission2.setOnMouseClicked(mouseEvent -> {
+
+            Enemy.setEnemies();
+            GameSetup.setBasics();
+            Levels.setTheScene2();
+            GameSetup.enemyStrike();
+            GameSetup.heroStrike();
         });
     }
 
@@ -114,6 +115,7 @@ public class EventHandling {
                 if(Hero.getHeroes().size() < 8) {
                     hero.setChosen(true);
                     Hero.getHeroes().add(hero);
+                    System.out.println(Hero.getHeroes().size());
                     hero.getName().setVisible(true);
                 }
             }
@@ -140,11 +142,13 @@ public class EventHandling {
                 hero.getTraining().setY(420);
                 hero.getTraining().setX(265);
             } else if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-                hero.getTraining().setVisible(false);
-                hero.UpgradeHero();
-                hero.setText();
-                System.out.println(hero.getLvl());
-                System.out.println(hero.getTraining().getText());
+                if(Upgrade.spendMoney(hero.getLvl()*10)) {
+                    hero.getTraining().setVisible(false);
+                    hero.UpgradeHero();
+                    hero.setText();
+                    System.out.println(hero.getLvl());
+                    System.out.println(hero.getTraining().getText());
+                }
             } else if (event.getEventType().equals(MouseEvent.MOUSE_EXITED)) {
                 hero.getTraining().setVisible(false);
             }
@@ -161,14 +165,16 @@ public class EventHandling {
             hq.getCurrentState().setY(420);
         });
 
-        hq.getButton().setOnMouseExited(mouseEvent -> {
-            hq.getCurrentState().setVisible(false);
-        });
+        hq.getButton().setOnMouseExited(mouseEvent -> hq.getCurrentState().setVisible(false));
 
         hq.getButton().setOnMouseClicked(mouseEvent -> {
-            hq.getCurrentState().setVisible(false);
-            hq.upgradeHQ();
-            hq.setText();
+            if(Upgrade.spendMoney(hq.getLvl()*100)) {
+                hq.getCurrentState().setVisible(false);
+                hq.upgradeHQ();
+                hq.setText();
+            }else{
+                System.out.println("not enough money");
+            }
         });
         eventHandling();
     }

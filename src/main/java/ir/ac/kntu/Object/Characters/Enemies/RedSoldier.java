@@ -1,13 +1,12 @@
 package ir.ac.kntu.Object.Characters.Enemies;
 
-import ir.ac.kntu.Object.Characters.Characters;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
+import javafx.scene.paint.Color;
 import java.util.LinkedList;
 
 public class RedSoldier extends Enemy{
     static LinkedList<RedSoldier> redSoldiers = new LinkedList<>();
+    static LinkedList<RedSoldier> redSoldiers1 = new LinkedList<>();
 
 
     public RedSoldier(int health, int attack, int attackRange) {
@@ -27,5 +26,9 @@ public class RedSoldier extends Enemy{
 
     public static LinkedList<RedSoldier> getRedSoldiers() {
         return redSoldiers;
+    }
+
+    public static LinkedList<RedSoldier> getRedSoldiers1() {
+        return redSoldiers1;
     }
 }

@@ -1,16 +1,10 @@
 package ir.ac.kntu.Object.Characters.Heroes;
 
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
-import java.io.ObjectStreamClass;
 
 public class OsamuKashiwagi extends Hero {
     private static OsamuKashiwagi single_instance = null;
-
-    private OsamuKashiwagi(int health, int attack, int attackRange, int fieldOfView) {
-        super(health, attack, attackRange, fieldOfView);
-    }
 
     private OsamuKashiwagi(){}
 
