@@ -133,7 +133,7 @@ public class GameSetup {
             public void handle(long l) {
                 for (Enemy i : enemyGroup) {
                     i.march();
-                    if(waveCnt[0]==3)
+                    if(waveCnt[0]==8)
                         System.out.println("boss1");
                     GameFlow.heroAttack(i);
                     //System.out.println(enemyGroup.size());
@@ -145,14 +145,14 @@ public class GameSetup {
                 if (enemyGroup.size() == 30) {
                     Enemy.getDestructedEnemies().clear();
                 }
-                if (waveCnt[0] == 2&& !bossFlag&&GameSetup.getEnemyGroup().isEmpty()) {
+                if (waveCnt[0] == 7&& !bossFlag&&GameSetup.getEnemyGroup().isEmpty()) {
                     System.out.println("boss");
                     Levels.firstBoss();
                     waveCnt[0]++;
                     bossFlag=true;
                 }
 
-                if (GameSetup.getEnemyGroup().isEmpty() && waveCnt[0]<2) {
+                if (GameSetup.getEnemyGroup().isEmpty() && waveCnt[0]<7) {
                     waveCnt[0]++;
                     if(waveCnt[0]>=1)
                         Upgrade.earnMoney();
@@ -165,7 +165,7 @@ public class GameSetup {
                     }
                 }
 
-                if (waveCnt[0] == 3&&enemyGroup.isEmpty()) {
+                if (waveCnt[0] == 8&&enemyGroup.isEmpty()) {
                     for(int i=0;i<3;i++){
                         Upgrade.earnMoney();
                     }
@@ -193,7 +193,6 @@ public class GameSetup {
                     Hero.getHeroes().remove(i);
                 }
                 if(Hero.getHeroes().isEmpty()){
-                    System.out.println("you lose sucker");
                     loseOrWin(false);
                     timer1.stop();
                     timer2.stop();
